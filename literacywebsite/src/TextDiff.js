@@ -14,7 +14,7 @@ function Diff({ text1, text2 }) {
   let wrongWords = 0;
   let partialWords = 0;
   let prev;
-  let prevScore;
+  let prevScore = 0;
 
   /*
       Added words styling and scores.
@@ -23,12 +23,13 @@ function Diff({ text1, text2 }) {
     let score = getScore(diff);
     if (redGreenCount(diff, score)) {
       totalUserScore += 0.5 * prevScore;
+      prevScore = score;
       return {
         backgroundColor: '#fedd70',
       };
     }
     else {
-      totalUserScore -= score;
+      totalUserScore -= (1 / totalWordsPassage) * score;
       return {
         backgroundColor: '#d4edda',
         color: 'green',
@@ -75,11 +76,9 @@ function Diff({ text1, text2 }) {
         wrongWords += words.length;
       }
       else if (diff.removed) {
-        totalWordsPassage += words.length;
         wrongWords += words.length;
       }
       else {
-        totalWordsPassage += words.length;
         totalWordsUser += words.length;
         correctWords += words.length;
       }
@@ -93,16 +92,20 @@ function Diff({ text1, text2 }) {
           phraseScore += 1;
         }
       }
-
-      return phraseScore;
     }
+
+    return phraseScore;
   }
 
   /*
       Return true if there is a red word followed by a green word or false otherwise. Used to give partial credit.
   */
   function redGreenCount(diff, score) {
-    if (prev && prev.removed && diff.added && diff.count === 1 && prev.count === 1) {
+    if (diff.value == " ") {
+      prevScore = 0;
+      return false;
+    }
+    if (prev && prev.removed && diff.added && diff.count == 1 && prev.count == 1) {
       partialWords++;
       wrongWords--; //Prevents double counting of wrong words.
       return true;
@@ -112,11 +115,20 @@ function Diff({ text1, text2 }) {
     return false;
   }
 
+  function getTotalWords(text) {
+    let arr = text.split(" ");
+    return arr.length;
+  }
+
 
   return (
     <div>
       {diffs.map((diff, i) => {
         let style;
+        if (i == 0) {
+          totalWordsPassage = getTotalWords(text1);
+        }
+
         if (diff.added) {
           style = handleAddedDiff(diff);
         }
@@ -127,11 +139,9 @@ function Diff({ text1, text2 }) {
           style = handleNormalDiff(diff);
         }
 
-        if(i == diff.length && totalUserScore < 0)
-        {
+        if (i == diffs.length - 1 && totalUserScore < 0) {
           totalUserScore = 0;
         }
-
         return (
           <span key={i} style={style}>
             {diff.value}
