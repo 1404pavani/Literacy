@@ -1,0 +1,48 @@
+.readingBox {
+    background-color: rgb(240, 247, 255);
+    color: rgb(69, 69, 69);
+    border-radius: 25px;
+    margin-top: 2%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: 1.5rem;
+}
+
+.speakingBox {
+    background-color: rgb(202, 210, 218);
+    color: rgb(69, 69, 69);
+    border-radius: 25px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: 1.5rem;
+}
+
+.resultBox {
+    background-color: rgb(204, 222, 240);
+    border-radius: 25px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: 1.5rem;
+}
+
+.microphoneButtons {
+    display: flex;
+    flex-direction: row;
+    float: left;
+}
+
+.submitButtons {
+    display: flex;
+    flex-direction: row;
+    float: right;
+}
+
+.banner img {
+    border-radius: 25px;
+}

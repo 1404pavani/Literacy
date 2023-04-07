@@ -1,46 +1,28 @@
 import "./App.css";
-// importing components from react-router-dom package
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
-  
-// import Home component
-import Home from "./components/Home";
-// import About component
-import Reading from "./components/Reading";
-// import ContactUs component
-import Writing from "./components/Writing";
+import NavBar from "./NavBar";
+import Home from "./pages/Home";
+import VeryHungryCaterpillar from "./pages/Dictaphone";
+import Writing from "./pages/Writing";
+import Analytics from "./pages/Analytics";
+import {Route, Routes} from 'react-router-dom';
+import PeppaPigVideo from "./pages/PeppaPigVideo";
+import ReadingMenu from "./pages/ReadingMenu";
+import Dictaphone from "./pages/Dictaphone";
   
 function App() {
   return (
     <>
-      {/* This is the alias of BrowserRouter i.e. Router */}
-      <Router>
-        <Switch>
-          {/* This route is for home component 
-          with exact path "/", in component props 
-          we passes the imported component*/}
-          <Route exact path="/" component={Home} />
-            
-          {/* This route is for about component 
-          with exact path "/about", in component 
-          props we passes the imported component*/}
-          <Route path="/Reading" component={Reading} />
-            
-          {/* This route is for contactus component
-          with exact path "/contactus", in 
-          component props we passes the imported component*/}
-          <Route path="/Writing" component={Writing} />
-            
-          {/* If any route mismatches the upper 
-          route endpoints then, redirect triggers 
-          and redirects app to home component with to="/" */}
-          <Redirect to="/" />
-        </Switch>
-      </Router>
+       <NavBar/>
+       <div className="container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Reading" element={<ReadingMenu />} />
+            <Route path="/Writing" element={<Writing />} />
+            <Route path="/Analytics" element={<Analytics/>} />
+            <Route path="/PeppaPigVideo" element={<PeppaPigVideo/>} />
+            <Route path="/Dictaphone" element={<Dictaphone/>} />
+          </Routes>
+       </div>
     </>
   );
 }

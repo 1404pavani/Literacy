@@ -1,0 +1,14 @@
+.menugrid img {
+    border-radius: 25px;
+}
+
+.menugrid img:hover {
+    border-radius: 25px;
+    transform:scale(1.15);
+}
+
+.box {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}

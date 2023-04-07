@@ -1,0 +1,24 @@
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
+.page {
+    display: flex;
+    flex-direction: row;
+}
+
+.video {
+    width: 70%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.writing {
+    width: 25%;
+    margin-right: 0;
+    padding-right: 0%;
+}
+   
