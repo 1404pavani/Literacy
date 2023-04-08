@@ -16,8 +16,8 @@ function Diff({ text1, text2 }) {
   let prev;
   let prevScore = 0;
   const wrongWordsMap = new Map();
-  let largestValue = 0;
-  let largestKey = "";
+  let sortedWrongWordsArray;
+  let sortedWrongWordsString;
 
   /*
       Added words styling and scores.
@@ -137,11 +137,36 @@ function Diff({ text1, text2 }) {
   function sortMap(map)
   {
     const arr = Array.from(map);
-    arr.sort((a, b) => b[1] - a[1]);
+    if(arr.length > 1)
+    {
+      arr.sort((a, b) => b[1] - a[1]);
+    }
     largestValue = arr[0][1];
     largestKey = arr[0][0];
-    return new Map(arr);
+    return arr;
   }
+
+  function wrongWordsString(arr)
+  {
+    let string = "";
+    if(arr.length == 0)
+    {
+      string = "None! Perfect! Slay!";
+    }
+    else if(arr.length == 1)
+    {
+      string += ("1. " + arr[0][0] + " , " + arr[0][1]);
+    }
+    else if(arr.length == 2)
+    {
+      string += ("1. " + arr[0][0] + " , " + arr[0][1] + "; 2. " + arr[1][0] + " , " + arr[1][1]);
+    }
+    else
+    {
+      string += ("1. " + arr[0][0] + " , " + arr[0][1] + "; 2. " + arr[1][0] + " , " + arr[1][1] + "; 3. " + arr[2][0] + " , " + arr[2][1]);
+    }
+    return string;
+  } 
 
 
   return (
@@ -164,7 +189,8 @@ function Diff({ text1, text2 }) {
 
         if (i == diffs.length - 1)
         { 
-          wrongWordsMap = sortMap(wrongWordsMap);
+          sortedWrongWordsArray = sortMap(wrongWordsMap);
+          sortedWrongWordsString = wrongWordsString(sortedWrongWordsArray);
           if(totalUserScore < 0) 
           {
             totalUserScore = 0;
@@ -194,7 +220,7 @@ function Diff({ text1, text2 }) {
         <br />
         Accuracy: {Math.round(100 * (totalUserScore / totalPassageScore))}%
         <br />
-        Most Wrong Word and Frequency: {largestKey}, {largestValue}
+        Most Wrong Words and Frequencies: {sortedWrongWordsString}
       </p>
     </div>
   );
