@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Typography, CssBaseline, Button } from '@mui/material';
 import Diff from '../TextDiff.js';
-import "./dictaphone.css";
+import "./reading.css";
 import IconButton from '@mui/material/IconButton';
 import pigeonBanner from '../images/pigeonbanner.jpg';
 
@@ -15,7 +15,7 @@ import FlagIcon from '@mui/icons-material/Flag';
 const pigStory = "Once upon a time there lived a lion in a forest. One day after a heavy meal. It was sleeping under a tree. After a while, there came a mouse and it started to play on the lion. Suddenly the lion got up with anger and looked for those who disturbed its nice sleep. Then it saw a small mouse standing trembling with fear. The lion jumped on it and started to kill it. The mouse requested the lion to forgive it. The lion felt pity and left it. The mouse ran away. On another day, the lion was caught in a net by a hunter. The mouse came there and cut the net. Thus it escaped. There after, the mouse and the lion became friends. They lived happily in the forest afterwards.";
 const chunks = pigStory.split(/(?<=[.?!])/);
 
-const Dictaphone = () => {
+const Reading = () => {
 
     const [userText, setUserText] = useState('');
     const [correctText, setCorrectText] = useState('');
@@ -150,11 +150,11 @@ function handleText() {
         <br></br>
         
         <div className='speakingBox'>{transcript}</div>
-        {/* <div> {correctText} </div>
+        <div> {correctText} </div>
         <div> {userText} </div> 
-        <div className='resultBox'> <Diff text1={correctText} text2={userText} /> </div> */}
+        <div className='resultBox'> <Diff text1={correctText} text2={userText} /> </div>
       
       </div>
     );
   };
-  export default Dictaphone;
+  export default Reading;

@@ -2,8 +2,6 @@ import { diffWords } from 'diff';
 import map from './Map';
 
 function Diff({ text1, text2 }) {
-  text1 = text1.replace(/[^\w\s\']|_/g, "").trim();
-  text2 = text2.replace(/[^\w\s\']|_/g, "").trim();
   const options = { ignoreCase: true };
   const diffs = diffWords(text1, text2, options);
   let totalPassageScore = 0;
@@ -153,15 +151,15 @@ function Diff({ text1, text2 }) {
     }
     else if(arr.length == 1)
     {
-      string += ("1. " + arr[0][0] + " , " + arr[0][1]);
+      string += ("1. " + arr[0][0] + ", " + arr[0][1]);
     }
     else if(arr.length == 2)
     {
-      string += ("1. " + arr[0][0] + " , " + arr[0][1] + "; 2. " + arr[1][0] + " , " + arr[1][1]);
+      string += ("1. " + arr[0][0] + ", " + arr[0][1] + "; 2. " + arr[1][0] + ", " + arr[1][1]);
     }
     else
     {
-      string += ("1. " + arr[0][0] + " , " + arr[0][1] + "; 2. " + arr[1][0] + " , " + arr[1][1] + "; 3. " + arr[2][0] + " , " + arr[2][1]);
+      string += ("1. " + arr[0][0] + ", " + arr[0][1] + "; 2. " + arr[1][0] + ", " + arr[1][1] + "; 3. " + arr[2][0] + ", " + arr[2][1]);
     }
     return string;
   } 
