@@ -141,8 +141,6 @@ function Diff({ text1, text2 }) {
     {
       arr.sort((a, b) => b[1] - a[1]);
     }
-    largestValue = arr[0][1];
-    largestKey = arr[0][0];
     return arr;
   }
 
