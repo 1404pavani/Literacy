@@ -3,15 +3,15 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import bfg from "../images/bfg.JPG";
-import dontletthepigeondrivethebus from "../images/dontletthepigeondrivethebus.JPG";
-import givingtree from "../images/givingtree.JPG";
-import humptydumpty from "../images/humptydumpty.JPG";
-import ifyougiveamouseacookie from "../images/ifyougiveamouseacookie.JPG";
-import rainbowfish from "../images/rainbowfish.JPG";
-import runawaybunny from "../images/runawaybunny.JPG";
-import snowyday from "../images/snowyday.JPG";
-import veryhungrycaterpillar from "../images/veryhungrycaterpillar.JPG";
+import bfg from "../images/bfg.jpg";
+import dontletthepigeondrivethebus from "../images/dontletthepigeondrivethebus.jpg";
+import givingtree from "../images/givingtree.jpg";
+import humptydumpty from "../images/humptydumpty.jpg";
+import ifyougiveamouseacookie from "../images/ifyougiveamouseacookie.jpg";
+import rainbowfish from "../images/rainbowfish.jpg";
+import runawaybunny from "../images/runawaybunny.jpg";
+import snowyday from "../images/snowyday.jpg";
+import veryhungrycaterpillar from "../images/veryhungrycaterpillar.jpg";
 
 import "./menuGrid.css";
 

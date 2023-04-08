@@ -15,6 +15,9 @@ function Diff({ text1, text2 }) {
   let partialWords = 0;
   let prev;
   let prevScore = 0;
+  const wrongWordsMap = new Map();
+  let largestValue = 0;
+  let largestKey = "";
 
   /*
       Added words styling and scores.
@@ -91,6 +94,17 @@ function Diff({ text1, text2 }) {
         else {
           phraseScore += 1;
         }
+        if(diff.removed)
+        {
+          if(!wrongWordsMap.has(word))
+          {
+            wrongWordsMap.set(word, 1);
+          }
+          else
+          {
+            wrongWordsMap.set(word, wrongWordsMap.get(word) + 1);
+          }
+        }
       }
     }
 
@@ -120,6 +134,15 @@ function Diff({ text1, text2 }) {
     return arr.length;
   }
 
+  function sortMap(map)
+  {
+    const arr = Array.from(map);
+    arr.sort((a, b) => b[1] - a[1]);
+    largestValue = arr[0][1];
+    largestKey = arr[0][0];
+    return new Map(arr);
+  }
+
 
   return (
     <div>
@@ -139,8 +162,13 @@ function Diff({ text1, text2 }) {
           style = handleNormalDiff(diff);
         }
 
-        if (i == diffs.length - 1 && totalUserScore < 0) {
-          totalUserScore = 0;
+        if (i == diffs.length - 1)
+        { 
+          wrongWordsMap = sortMap(wrongWordsMap);
+          if(totalUserScore < 0) 
+          {
+            totalUserScore = 0;
+          }
         }
         return (
           <span key={i} style={style}>
@@ -165,6 +193,8 @@ function Diff({ text1, text2 }) {
         User Score: {totalUserScore}
         <br />
         Accuracy: {Math.round(100 * (totalUserScore / totalPassageScore))}%
+        <br />
+        Most Wrong Word and Frequency: {largestKey}, {largestValue}
       </p>
     </div>
   );
